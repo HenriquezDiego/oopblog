@@ -70,18 +70,24 @@
                   <a href="#">Seguridad</a>
                 </div>
               </div>
-              <div class="entry-content">
-                <p id="blog">En este post intentaremos cubrir de una forma práctica los elementos fundamentales para securizar
-                  nuestras aplicaciones web y APIs REST en .NET Core. Hablaremos de esquemas de autenticación, como
-                  funcionan, como usarlos y veremos que herramientas tenemos en .NET Core para autorizar de forma
-                  efectiva a nuestros usuarios.</p>
-                <p><strong>¿Qué es la seguridad de las aplicaciones web?</strong></p>
+              <div class="entry-content text-justify">
+                <p id="blog"><strong>¿Qué es la seguridad de las aplicaciones web?</strong></p>
                 <p>Se refiere a las medidas de seguridad, a nivel de aplicación, cuyo propósito es impedir el
                   robo o el secuestro de datos o códigos dentro de la aplicación.</p>
                 <p><strong>¿Por qué es tan importante la seguridad de las aplicaciones?</strong></p>
                 <p>La seguridad de las aplicaciones es importante porque las aplicaciones actuales suelen
                   estar disponibles a través de varias redes, lo que aumenta las vulnerabilidades a los
                   peligros y las amenazas a la seguridad.</p>
+                  <p>En muchas ocasiones no se llega a distinguir las palabras o términos que más se utilizan en el mundo del software o Internet. Un ejemplo podría ser las diferencias entre autenticación
+                     y autorización que son fundamentales en el desarrollo del software.</p>
+                  <p><strong>La autenticación</strong> es el proceso por el cual se identifica un cliente (persona) como válida para posteriormente acceder a ciertos recursos definidos.
+                    <strong>La autorización</strong> es el proceso sobre el cual se establecen que tipos de recursos están permitidos o denegados para cierto usuario o grupo de usuarios concreto.
+                    Podríamos poner un ejemplo de un usuario que se autentifique (identificado) en una aplicación pero que no tenga acceso a ningún recurso porque no está autorizado a ello. Esto sería como que tu presentaras tus credenciales en un sitio web y al acceder a tu panel de administración no podrías realizar ninguna acción. En realidad este caso sería un caso poco realista pero serviría para explicar cual es la diferencia entre autenticación y autorización.
+                    La autorización tiene mucho que ver con perfiles y roles de usuarios. Lo normal es que al diseñar una aplicación existan muchos tipos de usuario que englobemos en distintos perfiles: por ejemplo: administrador, editor, invitado…
+                    Estos usuarios tendrán acceso a distintos recursos según sea el perfil al que pertenezcan. Un administrador de un sistema, por ejemplo, tendrá acceso a todos los recursos que ofrezca la aplicación. Hablamos de recursos como todos los recursos, no solamente los contenidos sino también ficheros, servicios, etc. que se encuentren en el servidor web o incluso fuera de él.
+                    Existen hasta modos de establecer que nivel de autorización tiene un usuario que no está autenticado, es decir, un invitado de un sitio web a veces puede tener acceso a muchos pero no todos los recursos.
+                    Diferenciar estos dos conceptos es importante para un desarrollador sobretodo a la hora de buscar documentación.
+                    </p>
               </div>
           </div>
           <!-- Sidebar -->

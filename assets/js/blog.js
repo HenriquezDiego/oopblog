@@ -14,3 +14,7 @@ if(pathnameSplit != null){
 
 $title[0].innerHTML = pathname;
 
+
+const $entries = document.getElementById("posts")
+// console.log($entries.children[0].children);
+

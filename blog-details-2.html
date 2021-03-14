@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>blogs</title>
+  <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="assets/css/maicons.css">
+  <link rel="stylesheet" href="assets/vendor/animate/animate.css">
+  <link rel="stylesheet" href="assets/vendor/owl-carousel/css/owl.carousel.min.css">
+  <link rel="stylesheet" href="assets/css/bootstrap.css">
+  <link rel="stylesheet" href="assets/css/mobster.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light navbar-floating">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav ml-lg-5 mt-3 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="blog.html">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+        <div class="ml-auto my-2 my-lg-0">
+          <a class="btn btn-dark rounded-pill" href="https://github.com/Ale-vill/" target="_blank"> Github</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <div class="page-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 py-3">
+            <article class="blog-single-entry">
+              <div class="post-thumbnail">
+                <img src="assets/img/blogs/blog_2_detail.png" alt="">
+              </div>
+              <div class="post-date">
+                Posted on <a href="#">Jan 19, 2020</a>
+              </div>
+              <h1 class="post-title">Autorizacion y Autenticacion</h1>
+              <div class="entry-meta mb-4">
+                <div class="meta-item entry-author">
+                  <div class="icon">
+                    <span class="mai-person"></span>
+                  </div>
+                  by <a href="#">Admin</a>
+                </div>
+                <div class="meta-item">
+                  <div class="icon">
+                    <span class="mai-pricetags"></span>
+                  </div>
+                  Category:
+                  <a href="#">Tecnologia</a>,
+                  <a href="#">Seguridad</a>
+                </div>
+              </div>
+              <div class="entry-content text-justify">
+                <h5><strong>Qué es JWT ?</strong></h5>  
+                <p>JWT (JSON Web Token) es un estándar qué está dentro del documento RFC 7519.
+                    
+                    En el mismo se define un mecanismo para poder propagar entre dos partes, y de forma segura, la identidad de un determinado usuario, además con una serie de claims o privilegios.
+                    
+                    Estos privilegios están codificados en objetos de tipo JSON, que se incrustan dentro de del payload o cuerpo de un mensaje que va firmado digitalmente.
+                    
+                    Token JWT
+                    En la práctica, se trata de una cadena de texto que tiene tres partes codificadas en Base64, cada una de ellas separadas por un punto, como la que vemos en la imagen siguiente:</p>
+                  <p>Podemos ver el contenido del token sin necesidad de saber la clave con la cual se ha generado, aunque no podremos validarlo sin la misma.
+
+                    Como hemos dicho, un token tres partes:</p>
+                    <ul>
+                      <li><strong>Header:</strong> encabezado dónde se indica, al menos, el algoritmo y el tipo de token, que en el caso del ejemplo anterior era el algoritmo HS256 y un token JWT.</li>
+                      <li><strong>Payload:</strong> donde aparecen los datos de usuario y privilegios, así como toda la información que queramos añadir, todos los datos que creamos convenientes.</li>
+                      <li><strong>Signature:</strong> una firma que nos permite verificar si el token es válido, y aquí es donde radica el quid de la cuestión, ya que si estamos tratando de hacer una comunicación segura entre partes y hemos visto que podemos coger cualquier token y ver su contenido con una herramienta sencilla, ¿dónde reside entonces la potencia de todo esto?</li>
+                    </ul>
+
+                    <h5><strong>Firma de un token JWT</strong></h5>
+                    <p>La firma se construye de tal forma que vamos a poder verificar que el remitente es quien dice ser, y que el mensaje no se ha modificado por el camino.
+
+                      Se construye como el HMACSHA256, que son las siglas de Hash-Based Message Authentication Code (Código de Autenticación de Mensajes), cifrado además con el algoritmo SHA de 256 bits.
+                      Se aplica esa función a:</p>
+                      <ul>
+                        <li><strong>Codificación en Base64 de header.</strong></li>
+                        <li><strong>Codificación en Base64 de payload.</strong></li>
+                        <li><strong>Un secreto, establecido por la aplicación.</strong></li>
+                      </ul>
+                      <p>De esta forma, si alguien modifica el token por el camino, por ejemplo, inyectando alguna credencial o algún dato malicioso, entonces podríamos verificar que la comprobación de la firma no es correcta, por lo que no podemos confiar en el token recibido y deberíamos denegar la solicitud de recursos que nos haya realizado, ya sea para obtener datos o modificarlos.
+
+                        Si lo que estamos requiriendo es que el usuario esté autenticado, deberíamos denegar esa petición, por lo que siempre que trabajemos con JWT deberíamos verificar con esa firma si el token es válido o no lo es.</p>
+                     <h5><strong>Token JWT seguro</strong></h5>
+                     <p>Aunque el algoritmo nos permita verificar la firma, y, por tanto, confiar o no, tanto el encabezado como el cuerpo si llevan muchos datos van en abierto, ya que Base64 no es un cifrado, es simplemente una codificación que es muy fácilmente decodificable.
+
+                      JWT nos invita siempre a que la comunicación entre partes se realice con HTTPS para encriptar el tráfico, de forma que, si alguien lo interceptara, el propio tráfico a través de HTTP sobre esos sockets SSL, cifrara toda la comunicación, la del token y todo lo demás, y así añadir esa posibilidad de seguridad.
+                      
+                      De hecho, siempre deberíamos utilizar HTTPS y un servidor con certificado para hacer el despliegue de nuestras aplicaciones, no solamente con este con este tipo de token JWT.</p>
+                      <h5><strong>Ciclo de vida de un Token JWT</strong></h5>
+                      <p>Vamos a ver ahora el ciclo de vida de un token JWT, si lo queremos utilizar en el marco de un proceso de autenticación.
+  
+                        Como hemos visto, JWT no es un estándar de autenticación, sino que simplemente un estándar que nos permite hacer una comunicación entre dos partes de identidad de usuario. Con este proceso, además, podríamos implementar la autenticación de usuario de una manera que fuera relativamente segura.
+                        
+                        </p>
+                      <div>
+                    <img src="assets/img/blogs/jwt-revoke_blog_2.png" alt="">
+                  </div>
+                  <br>
+                  <p id="blog">Intentaremos cubrir de una forma práctica los elementos fundamentales para securizar
+                    nuestras aplicaciones web y APIs REST en .NET Core. Hablaremos de un esquemas de autenticación, como
+                    funcionan, como usarlos y veremos que herramientas tenemos en .NET Core para autorizar de forma
+                    efectiva a nuestros usuarios.</p>
+                  <div class="text-center py-5">
+                    <embed class="embed-video" src="https://www.youtube.com/embed/NHVHKuNnrcg">
+                  </div>
+              </div>
+          </div>
+          <!-- Sidebar -->
+          <div class="col-lg-4 py-3">
+              <div class="widget-wrap">
+                <h5 class="widget-title">Lenguajes de programacion</h5>
+                <ul class="categories">
+                  <li><a href="#"> Python <span>1</span></a></li>
+                  <li><a href="#"> Java <span>2</span></a></li>
+                  <li><a href="#">C# <span>3</span></a></li>
+                  <li><a href="#"> C++ <span>4</span></a></li>
+                  <li><a href="#">PHP <span>5</span></a></li>
+                  <li><a href="#">Ada <span>6</span></a></li> 
+                </ul>
+              </div>
+
+            <div class="widget-wrap">
+              <h3 class="widget-title">Tag POO</h3>
+              <div class="tag-clouds">
+                <a href="#" class="tag-cloud-link">Clases</a>
+                <a href="#" class="tag-cloud-link">Objetos</a>
+                <a href="#" class="tag-cloud-link">Constructor</a>
+                <a href="#" class="tag-cloud-link">Propiedades</a>
+                <a href="#" class="tag-cloud-link">Metodos</a>
+                <a href="#" class="tag-cloud-link">Encapsulacion</a>
+                <a href="#" class="tag-cloud-link">Polimorfismo</a>
+                <a href="#" class="tag-cloud-link">Herencia</a>
+                <a href="#" class="tag-cloud-link">Abstraccion</a>
+              </div>
+            </div>
+          </div> <!-- end sidebar -->
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="page-footer-section bg-dark fg-white">
+    <div class="page-footer-section bg-dark fg-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 col-md-6 py-2">
+            <p class="d-inline-block ml-2">Copyright &copy; <a href="mypage" class="fg-white fw-medium">ACode</a>. All rights reserved</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer> <!-- .page-footer -->
+
+  <script src="assets/js/jquery-3.5.1.min.js"></script>
+
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+  <script src="assets/vendor/owl-carousel/js/owl.carousel.min.js"></script>
+
+  <script src="assets/vendor/wow/wow.min.js"></script>
+
+  <script src="assets/js/mobster.js"></script>
+  <script src="assets/js/blog.js"></script>
+</body>
+
+</html>
